@@ -24,7 +24,7 @@ button.addEventListener("click", async () => {
         const location = result.location;
 
         const weatherHtml = `
-            <h2>Weather in ${location.name}, ${location.country}</h2>
+            <h2>Weather in ${location.name}, <br>${location.region}, ${location.country}</h2>
             <p>Temperature: ${current.temp_c}°C (${current.temp_f}°F)</p>
             <p>Condition: ${current.condition.text}</p>
             <img src="${current.condition.icon}" alt="Weather Icon">
