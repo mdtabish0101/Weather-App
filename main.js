@@ -52,23 +52,42 @@ async function getData2(lat, long) {
     }
 }
 
-async function gotLocation(position){
+async function gotLocation(position) {
     const result = await getData2(position.coords.latitude, position.coords.longitude);
     const current = result.current;
     const location = result.location;
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
+    
+    const currentDate = new Date();
+    const date = `${currentDate.getDate().toString().padStart(2, '0')}:${(currentDate.getMonth() + 1).toString().padStart(2, '0')}:${currentDate.getFullYear()}`;
+    
+    function updateClock() {
+        const currentTime = new Date();
+        return `${currentTime.getHours().toString().padStart(2, '0')}:${currentTime.getMinutes().toString().padStart(2, '0')}:${currentTime.getSeconds().toString().padStart(2, '0')}`;
+    }
 
     const weatherHtml = `
         <h2>Weather in ${location.name}, ${location.country}</h2>
-        <p>Latitude: ${latitude} , Longitude: ${longitude}</p>
+        <p>Latitude: ${latitude}, Longitude: ${longitude}</p>
+        <p>Time: <span id="liveClock">${updateClock()}</span></p>
+        <p>Date: ${date}</p>
         <p>Temperature: ${current.temp_c}°C (${current.temp_f}°F)</p>
         <p>Condition: ${current.condition.text}</p>
         <img src="${current.condition.icon}" alt="Weather Icon"> <!-- Displaying weather icon -->
     `;
 
-    locationWeatherResult.innerHTML = weatherHtml; // Insert the data into the HTML element
+    locationWeatherResult.innerHTML = weatherHtml;
+
+    // Set up the clock to update every second
+    setInterval(() => {
+        const liveClockElement = document.getElementById("liveClock");
+        if (liveClockElement) {
+            liveClockElement.innerText = updateClock(); // Update the time in the HTML
+        }
+    }, 1000);
 }
+
 
 
 function errorLocation(){
