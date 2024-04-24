@@ -43,5 +43,23 @@ body {
     background-color: #ea738d9b; /* Darker red on hover */
 }
 
+#location-weather-result {
+    border: 1px solid #ccc; /* Light border for visibility */
+    padding: 20px; /* Padding for spacing */
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px; /* Rounded corners */
+    text-align: center; /* Center-align the content */
+    margin-top: 20px; /* Spacing from the previous content */
+}
+
+#location-weather-result h2 {
+    font-size: 1.5em; /* Larger font for headings */
+}
+
+#location-weather-result p {
+    font-size: 1em; /* Default font size for paragraphs */
+}
+
+
 
 
